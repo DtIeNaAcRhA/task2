@@ -2,7 +2,6 @@ package spentenergy
 
 import (
 	"errors"
-	"fmt"
 	"time"
 )
 
