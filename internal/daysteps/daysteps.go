@@ -16,7 +16,7 @@ var inputDataError = errors.New("Входные параметры некорр�
 type DaySteps struct {
 	Steps    int
 	Duration time.Duration
-	person   personaldata.Personal
+	Personal personaldata.Personal
 }
 
 func (ds *DaySteps) Parse(datastring string) (err error) {
@@ -38,8 +38,8 @@ func (ds *DaySteps) Parse(datastring string) (err error) {
 }
 
 func (ds DaySteps) ActionInfo() (string, error) {
-	distance := spentenergy.Distance(ds.Steps, ds.person.Height)
-	calories, err := spentenergy.WalkingSpentCalories(ds.Steps, ds.person.Weight, ds.person.Height, ds.Duration)
+	distance := spentenergy.Distance(ds.Steps, ds.Personal.Height)
+	calories, err := spentenergy.WalkingSpentCalories(ds.Steps, ds.Personal.Weight, ds.Personal.Height, ds.Duration)
 	if err != nil {
 		return "", err
 	}
