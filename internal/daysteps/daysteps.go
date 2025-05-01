@@ -14,7 +14,7 @@ import (
 type DaySteps struct {
 	Steps    int
 	Duration time.Duration
-	Personal personaldata.Personal
+	personaldata.Personal
 }
 
 func (ds *DaySteps) Parse(datastring string) (err error) {
@@ -42,8 +42,8 @@ func (ds *DaySteps) Parse(datastring string) (err error) {
 }
 
 func (ds DaySteps) ActionInfo() (string, error) {
-	distance := spentenergy.Distance(ds.Steps, ds.Personal.Height)
-	calories, err := spentenergy.WalkingSpentCalories(ds.Steps, ds.Personal.Weight, ds.Personal.Height, ds.Duration)
+	distance := spentenergy.Distance(ds.Steps, ds.Height)
+	calories, err := spentenergy.WalkingSpentCalories(ds.Steps, ds.Weight, ds.Height, ds.Duration)
 	if err != nil {
 		return "", err
 	}
