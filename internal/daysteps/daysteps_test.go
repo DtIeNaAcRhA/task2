@@ -407,14 +407,14 @@ func (suite *DayStepsTestSuite) TestDayActionInfo() {
 			got, err := tt.ds.ActionInfo()
 			if tt.wantErr {
 				require.Error(suite.T(), err, "Для тестового случая %q (шаги: %d, продолжительность: %v, вес: %.1f, рост: %.2f) ожидалась ошибка, но её нет",
-					tt.name, tt.ds.Steps, tt.ds.Duration, tt.ds.Personal.Weight, tt.ds.Personal.Height)
+					tt.name, tt.ds.Steps, tt.ds.Duration, tt.ds.Weight, tt.ds.Height)
 				require.Empty(suite.T(), got, "Для тестового случая %q (шаги: %d, продолжительность: %v, вес: %.1f, рост: %.2f) ожидалась пустая строка, но получено: %q",
-					tt.name, tt.ds.Steps, tt.ds.Duration, tt.ds.Personal.Weight, tt.ds.Personal.Height, got)
+					tt.name, tt.ds.Steps, tt.ds.Duration, tt.ds.Weight, tt.ds.Height, got)
 				return
 			}
 			require.NoError(suite.T(), err)
 			require.Equal(suite.T(), tt.want, got, "\nActionInfo() получено:\n%v\nожидается:\n%v\n(шаги: %d, продолжительность: %v, вес: %.1f, рост: %.2f)",
-				got, tt.want, tt.ds.Steps, tt.ds.Duration, tt.ds.Personal.Weight, tt.ds.Personal.Height)
+				got, tt.want, tt.ds.Steps, tt.ds.Duration, tt.ds.Weight, tt.ds.Height)
 		})
 	}
 }

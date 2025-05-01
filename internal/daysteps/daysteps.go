@@ -11,8 +11,6 @@ import (
 	"github.com/Yandex-Practicum/tracker/internal/spentenergy"
 )
 
-var inputDataError = errors.New("Входные параметры некорректны")
-
 type DaySteps struct {
 	Steps    int
 	Duration time.Duration
@@ -22,14 +20,14 @@ type DaySteps struct {
 func (ds *DaySteps) Parse(datastring string) (err error) {
 	dataArray := strings.Split(datastring, ",")
 	if len(dataArray) != 2 {
-		return inputDataError
+		return errors.New("input parameters have an incorrect format")
 	}
 	steps, err := strconv.Atoi(dataArray[0])
 	if err != nil {
 		return err
 	}
 	if steps <= 0 {
-		return errors.New("Количество шагов должно быть больше нуля")
+		return errors.New("steps count less than or equal to zero")
 	}
 	ds.Steps = steps
 	duration, err := time.ParseDuration(dataArray[1])
@@ -37,7 +35,7 @@ func (ds *DaySteps) Parse(datastring string) (err error) {
 		return err
 	}
 	if duration <= 0 {
-		return errors.New("Продолжительность должна быть больше нуля")
+		return errors.New("duration less than or equal to zero")
 	}
 	ds.Duration = duration
 	return nil
