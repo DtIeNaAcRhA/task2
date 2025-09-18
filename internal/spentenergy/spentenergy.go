@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-var inputDataErr = errors.New("input data has a value less than or equal to zero")
+var ErrInputData = errors.New("input data has a value less than or equal to zero")
 
 // Основные константы, необходимые для расчетов.
 const (
@@ -17,7 +17,7 @@ const (
 
 func WalkingSpentCalories(steps int, weight, height float64, duration time.Duration) (float64, error) {
 	if steps <= 0 || weight <= 0 || height <= 0 || duration <= 0 {
-		return 0, inputDataErr
+		return 0, ErrInputData
 	}
 	meanSpeed := MeanSpeed(steps, height, duration)
 	calories := (weight * meanSpeed * duration.Minutes()) / minInH
@@ -26,7 +26,7 @@ func WalkingSpentCalories(steps int, weight, height float64, duration time.Durat
 
 func RunningSpentCalories(steps int, weight, height float64, duration time.Duration) (float64, error) {
 	if steps <= 0 || weight <= 0 || height <= 0 || duration <= 0 {
-		return 0, inputDataErr
+		return 0, ErrInputData
 	}
 	meanSpeed := MeanSpeed(steps, height, duration)
 	calories := (weight * meanSpeed * duration.Minutes()) / minInH
