@@ -11,7 +11,7 @@ import (
 	"github.com/Yandex-Practicum/tracker/internal/spentenergy"
 )
 
-var inputDataError = errors.New("Входные параметры некорректны")
+var ErrInputData = errors.New("input parameters are incorrect")
 
 type Training struct {
 	Steps        int
@@ -23,7 +23,7 @@ type Training struct {
 func (t *Training) Parse(datastring string) (err error) {
 	dataArray := strings.Split(datastring, ",")
 	if len(dataArray) != 3 {
-		return inputDataError
+		return ErrInputData
 	}
 	steps, err := strconv.Atoi(dataArray[0])
 	if err != nil {
